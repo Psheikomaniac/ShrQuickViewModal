@@ -1,0 +1,103 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_content %}
+    <div class="shr-compare-page">
+        <div class="container">
+            <h1 class="compare-title">{{ "shr-quick-view-modal.comparePageTitle"|trans }}</h1>
+            
+            {% if products|length > 0 %}
+                <div class="compare-table-wrapper">
+                    <div class="compare-table" role="table" aria-label="{{ "shr-quick-view-modal.compareTableLabel"|trans }}">
+                        {# Product Images Row #}
+                        <div class="compare-row" role="row">
+                            <div class="compare-header" role="columnheader">{{ "shr-quick-view-modal.product"|trans }}</div>
+                            {% for product in products %}
+                                <div class="compare-cell" role="cell">
+                                    <div class="product-image">
+                                        {% if product.cover %}
+                                            {% sw_thumbnails 'product-image' with {
+                                                media: product.cover,
+                                                sizes: {
+                                                    'default': '300px'
+                                                },
+                                                attributes: {
+                                                    'alt': product.translated.name,
+                                                    'title': product.translated.name
+                                                }
+                                            } %}
+                                        {% endif %}
+                                    </div>
+                                    <h2 class="product-name">{{ product.translated.name }}</h2>
+                                    <div class="product-price">{{ product.calculatedPrice.unitPrice|currency }}</div>
+                                    <a href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}" 
+                                       class="btn btn-primary"
+                                       aria-label="{{ "shr-quick-view-modal.viewProduct"|trans({'%product%': product.translated.name}) }}">
+                                        {{ "shr-quick-view-modal.viewDetails"|trans }}
+                                    </a>
+                                    <button class="btn btn-link remove-product" 
+                                            data-product-id="{{ product.id }}"
+                                            aria-label="{{ "shr-quick-view-modal.removeFromComparison"|trans({'%product%': product.translated.name}) }}">
+                                        {{ "shr-quick-view-modal.remove"|trans }}
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        {# Description Row #}
+                        <div class="compare-row" role="row">
+                            <div class="compare-header" role="columnheader">{{ "shr-quick-view-modal.description"|trans }}</div>
+                            {% for product in products %}
+                                <div class="compare-cell" role="cell">
+                                    {{ product.translated.description|raw }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        {# Properties #}
+                        {% if showTechnicalData %}
+                            {% set allPropertyGroups = [] %}
+                            {% for product in products %}
+                                {% for property in product.properties %}
+                                    {% set groupName = property.group.translated.name %}
+                                    {% if groupName not in allPropertyGroups %}
+                                        {% set allPropertyGroups = allPropertyGroups|merge([groupName]) %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+
+                            {% for groupName in allPropertyGroups %}
+                                <div class="compare-row" role="row">
+                                    <div class="compare-header" role="columnheader">{{ groupName }}</div>
+                                    {% for product in products %}
+                                        <div class="compare-cell" role="cell">
+                                            {% set propertyValue = '' %}
+                                            {% for property in product.properties %}
+                                                {% if property.group.translated.name == groupName %}
+                                                    {{ property.translated.name }}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        {# Manufacturer Row #}
+                        <div class="compare-row" role="row">
+                            <div class="compare-header" role="columnheader">{{ "shr-quick-view-modal.manufacturer"|trans }}</div>
+                            {% for product in products %}
+                                <div class="compare-cell" role="cell">
+                                    {{ product.manufacturer.translated.name }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    {{ "shr-quick-view-modal.noProductsToCompare"|trans }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

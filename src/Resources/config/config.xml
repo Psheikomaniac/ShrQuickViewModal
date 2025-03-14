@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Basic Configuration</title>
+        <title lang="de-DE">Grundkonfiguration</title>
+        <title lang="es-ES">Configuración Básica</title>
+        <title lang="pt-PT">Configuração Básica</title>
+        <title lang="zh-CN">基本配置</title>
+        
+        <input-field type="bool">
+            <name>active</name>
+            <label>Enable Quick View Modal</label>
+            <label lang="de-DE">Schnellansicht Modal aktivieren</label>
+            <label lang="es-ES">Activar Modal de Vista Rápida</label>
+            <label lang="pt-PT">Ativar Modal de Visualização Rápida</label>
+            <label lang="zh-CN">启用快速查看模态框</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        
+        <input-field type="bool">
+            <name>showOnHoverOnly</name>
+            <label>Only show button on hover</label>
+            <label lang="de-DE">Button nur bei Hover anzeigen</label>
+            <label lang="es-ES">Mostrar botón solo al pasar el ratón</label>
+            <label lang="pt-PT">Mostrar botão apenas ao passar o mouse</label>
+            <label lang="zh-CN">仅在悬停时显示按钮</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        
+        <input-field type="single-select">
+            <name>defaultLanguage</name>
+            <label>Default Language</label>
+            <label lang="de-DE">Standardsprache</label>
+            <label lang="es-ES">Idioma Predeterminado</label>
+            <label lang="pt-PT">Idioma Padrão</label>
+            <label lang="zh-CN">默认语言</label>
+            <options>
+                <option>
+                    <id>system</id>
+                    <name>Use System Default</name>
+                    <name lang="de-DE">Systemstandard verwenden</name>
+                    <name lang="es-ES">Usar sistema predeterminado</name>
+                    <name lang="pt-PT">Usar padrão do sistema</name>
+                    <name lang="zh-CN">使用系统默认值</name>
+                </option>
+                <option>
+                    <id>en_GB</id>
+                    <name>English</name>
+                    <name lang="de-DE">Englisch</name>
+                    <name lang="es-ES">Inglés</name>
+                    <name lang="pt-PT">Inglês</name>
+                    <name lang="zh-CN">英语</name>
+                </option>
+                <option>
+                    <id>de_DE</id>
+                    <name>German</name>
+                    <name lang="de-DE">Deutsch</name>
+                    <name lang="es-ES">Alemán</name>
+                    <name lang="pt-PT">Alemão</name>
+                    <name lang="zh-CN">德语</name>
+                </option>
+                <option>
+                    <id>es_ES</id>
+                    <name>Spanish</name>
+                    <name lang="de-DE">Spanisch</name>
+                    <name lang="es-ES">Español</name>
+                    <name lang="pt-PT">Espanhol</name>
+                    <name lang="zh-CN">西班牙语</name>
+                </option>
+                <option>
+                    <id>pt_PT</id>
+                    <name>Portuguese</name>
+                    <name lang="de-DE">Portugiesisch</name>
+                    <name lang="es-ES">Portugués</name>
+                    <name lang="pt-PT">Português</name>
+                    <name lang="zh-CN">葡萄牙语</name>
+                </option>
+                <option>
+                    <id>zh_CN</id>
+                    <name>Mandarin Chinese</name>
+                    <name lang="de-DE">Mandarin Chinesisch</name>
+                    <name lang="es-ES">Chino Mandarín</name>
+                    <name lang="pt-PT">Chinês Mandarim</name>
+                    <name lang="zh-CN">普通话</name>
+                </option>
+            </options>
+            <defaultValue>system</defaultValue>
+            <helpText>Select the default language for the quick view modal. If "Use System Default" is selected, the modal will use the shop's language.</helpText>
+            <helpText lang="de-DE">Wählen Sie die Standardsprache für das Schnellansicht-Modal. Wenn "Systemstandard verwenden" ausgewählt ist, verwendet das Modal die Sprache des Shops.</helpText>
+            <helpText lang="es-ES">Seleccione el idioma predeterminado para el modal de vista rápida. Si se selecciona "Usar sistema predeterminado", el modal usará el idioma de la tienda.</helpText>
+            <helpText lang="pt-PT">Selecione o idioma padrão para o modal de visualização rápida. Se "Usar padrão do sistema" estiver selecionado, o modal usará o idioma da loja.</helpText>
+            <helpText lang="zh-CN">选择快速查看模态框的默认语言。如果选择"使用系统默认值"，模态框将使用商店的语言。</helpText>
+        </input-field>
+    </card>
+    
+    <card>
+        <title>Accessibility</title>
+        <title lang="de-DE">Barrierefreiheit</title>
+        <title lang="es-ES">Accesibilidad</title>
+        <title lang="pt-PT">Acessibilidade</title>
+        <title lang="zh-CN">无障碍</title>
+        
+        <input-field type="bool">
+            <name>improvedA11y</name>
+            <label>Enable enhanced accessibility</label>
+            <label lang="de-DE">Verbesserte Barrierefreiheit aktivieren</label>
+            <label lang="es-ES">Activar accesibilidad mejorada</label>
+            <label lang="pt-PT">Ativar acessibilidade melhorada</label>
+            <label lang="zh-CN">启用增强的无障碍功能</label>
+            <defaultValue>true</defaultValue>
+            <helpText>Adds ARIA attributes and keyboard navigation support</helpText>
+            <helpText lang="de-DE">Fügt ARIA-Attribute und Tastaturnavigationsunterstützung hinzu</helpText>
+            <helpText lang="es-ES">Añade atributos ARIA y soporte para navegación con teclado</helpText>
+            <helpText lang="pt-PT">Adiciona atributos ARIA e suporte para navegação por teclado</helpText>
+            <helpText lang="zh-CN">添加ARIA属性和键盘导航支持</helpText>
+        </input-field>
+    </card>
+    
+    <card>
+        <title>Product Comparison</title>
+        <title lang="de-DE">Produktvergleich</title>
+        <title lang="es-ES">Comparación de Productos</title>
+        <title lang="pt-PT">Comparação de Produtos</title>
+        <title lang="zh-CN">产品比较</title>
+        
+        <input-field type="bool">
+            <name>compareEnabled</name>
+            <label>Enable product comparison</label>
+            <label lang="de-DE">Produktvergleich aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        
+        <input-field type="int">
+            <name>maxCompareProducts</name>
+            <label>Maximum products to compare</label>
+            <label lang="de-DE">Maximale Anzahl zu vergleichender Produkte</label>
+            <defaultValue>4</defaultValue>
+            <min>2</min>
+            <max>10</max>
+        </input-field>
+    </card>
+    
+    <card>
+        <title>Button Styling</title>
+        <title lang="de-DE">Button-Styling</title>
+        
+        <input-field type="single-select">
+            <name>buttonIcon</name>
+            <label>Button Icon</label>
+            <label lang="de-DE">Button-Symbol</label>
+            <options>
+                <option>
+                    <id>eye</id>
+                    <name>Eye</name>
+                    <name lang="de-DE">Auge</name>
+                </option>
+                <option>
+                    <id>search</id>
+                    <name>Magnifying Glass</name>
+                    <name lang="de-DE">Lupe</name>
+                </option>
+                <option>
+                    <id>lightning</id>
+                    <name>Lightning Bolt</name>
+                    <name lang="de-DE">Blitz</name>
+                </option>
+            </options>
+            <defaultValue>eye</defaultValue>
+        </input-field>
+        
+        <input-field type="colorpicker">
+            <name>buttonColor</name>
+            <label>Button Color</label>
+            <label lang="de-DE">Button-Farbe</label>
+            <defaultValue>#000000</defaultValue>
+        </input-field>
+        
+        <input-field type="single-select">
+            <name>imageQuality</name>
+            <label>Image Quality</label>
+            <label lang="de-DE">Bildqualität</label>
+            <options>
+                <option>
+                    <id>high</id>
+                    <name>High Quality</name>
+                    <name lang="de-DE">Hohe Qualität</name>
+                </option>
+                <option>
+                    <id>medium</id>
+                    <name>Medium Quality (Faster)</name>
+                    <name lang="de-DE">Mittlere Qualität (Schneller)</name>
+                </option>
+                <option>
+                    <id>low</id>
+                    <name>Low Quality (Fastest)</name>
+                    <name lang="de-DE">Niedrige Qualität (Am schnellsten)</name>
+                </option>
+            </options>
+            <defaultValue>medium</defaultValue>
+        </input-field>
+    </card>
+    
+    <card>
+        <title>Modal Content</title>
+        <title lang="de-DE">Modal-Inhalt</title>
+        
+        <input-field type="bool">
+            <name>showGallery</name>
+            <label>Show Image Gallery</label>
+            <label lang="de-DE">Bildergalerie anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        
+        <input-field type="bool">
+            <name>showShortDescription</name>
+            <label>Show Short Description</label>
+            <label lang="de-DE">Kurzbeschreibung anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        
+        <input-field type="bool">
+            <name>showTechnicalData</name>
+            <label>Show Technical Data</label>
+            <label lang="de-DE">Technische Daten anzeigen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        
+        <input-field type="bool">
+            <name>showReviews</name>
+            <label>Show Reviews Preview</label>
+            <label lang="de-DE">Bewertungsvorschau anzeigen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        
+        <input-field type="bool">
+            <name>showShippingInfo</name>
+            <label>Show Shipping Information</label>
+            <label lang="de-DE">Versandinformationen anzeigen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        
+        <input-field type="bool">
+            <name>enableRecentlyViewed</name>
+            <label>Show recently viewed products</label>
+            <label lang="de-DE">Kürzlich angesehene Produkte anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        
+        <input-field type="int">
+            <name>recentlyViewedCount</name>
+            <label>Number of products to remember</label>
+            <label lang="de-DE">Anzahl der zu merkenden Produkte</label>
+            <defaultValue>5</defaultValue>
+            <min>1</min>
+            <max>20</max>
+        </input-field>
+    </card>
+</config>

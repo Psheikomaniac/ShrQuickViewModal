@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="ShrQuickViewModal\Controller\QuickViewModalController" public="true">
+            <argument type="service" id="sales_channel.product.repository"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        
+        <service id="ShrQuickViewModal\Subscriber\ProductListingSubscriber">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="twig"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="ShrQuickViewModal\Subscriber\ProductViewSubscriber">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="session"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Shr\QuickViewModal\Service\TranslationHelper">
+            <argument type="service" id="language.repository"/>
+        </service>
+
+        <service id="Shr\QuickViewModal\Controller\TranslationController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,125 @@
+.shr-compare-page {
+    padding: 2rem 0;
+    
+    .compare-title {
+        margin-bottom: 2rem;
+        font-size: 1.75rem;
+    }
+    
+    .compare-table-wrapper {
+        overflow-x: auto;
+        margin-bottom: 2rem;
+        
+        // Improved scrollbar styling
+        &::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+            
+            &:hover {
+                background: #666;
+            }
+        }
+    }
+    
+    .compare-table {
+        min-width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        
+        .compare-row {
+            display: flex;
+            border-bottom: 1px solid #dee2e6;
+            
+            &:nth-child(even) {
+                background-color: #f8f9fa;
+            }
+        }
+        
+        .compare-header {
+            flex: 0 0 200px;
+            padding: 1rem;
+            font-weight: bold;
+            background-color: #f8f9fa;
+            border-right: 1px solid #dee2e6;
+        }
+        
+        .compare-cell {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem;
+            text-align: center;
+            
+            &:not(:last-child) {
+                border-right: 1px solid #dee2e6;
+            }
+        }
+        
+        .product-image {
+            margin-bottom: 1rem;
+            
+            img {
+                max-width: 200px;
+                height: auto;
+            }
+        }
+        
+        .product-name {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 1rem;
+        }
+        
+        .remove-product {
+            margin-top: 0.5rem;
+            color: #dc3545;
+            
+            &:hover {
+                text-decoration: none;
+                color: darken(#dc3545, 10%);
+            }
+        }
+    }
+}
+
+// Mobile optimizations
+@media (max-width: 767px) {
+    .shr-compare-page {
+        .compare-table {
+            .compare-header {
+                flex: 0 0 120px;
+                font-size: 0.9rem;
+            }
+            
+            .compare-cell {
+                min-width: 200px;
+                
+                .product-image img {
+                    max-width: 150px;
+                }
+                
+                .product-name {
+                    font-size: 1rem;
+                }
+                
+                .product-price {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}

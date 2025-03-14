@@ -1,0 +1,135 @@
+{% block page_product_detail_quick_view %}
+    <div class="shr-quick-view-modal-content product-detail" role="dialog" aria-labelledby="quick-view-title" aria-modal="true">
+        <div class="row">
+            {# Product gallery section #}
+            <div class="col-md-6">
+                {% if product.media %}
+                    <div class="product-image-slider" role="region" aria-label="{{ "shr-quick-view-modal.productImages"|trans }}">
+                        {% for media in product.media %}
+                            <div class="product-image-slider-item">
+                                {% sw_thumbnails 'product-image-thumbnails' with {
+                                    media: media,
+                                    sizes: {
+                                        'default': '600px'
+                                    },
+                                    attributes: {
+                                        'alt': media.translated.alt ?: product.translated.name,
+                                        'aria-label': media.translated.alt ?: product.translated.name
+                                    }
+                                } %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            {# Product details section #}
+            <div class="col-md-6">
+                <div class="product-detail-headline d-flex justify-content-between align-items-start">
+                    <h1 class="product-detail-name" id="quick-view-title">{{ product.translated.name }}</h1>
+                    {% if config('ShrQuickViewModal.config.compareEnabled') %}
+                        <button class="btn shr-product-compare"
+                                data-product-id="{{ product.id }}"
+                                aria-label="{{ "shr-quick-view-modal.compareProduct"|trans({'%product%': product.translated.name}) }}">
+                            <span class="icon icon-stack"></span>
+                        </button>
+                    {% endif %}
+                </div>
+                
+                {% if product.translated.description %}
+                    <div class="product-detail-description">
+                        {{ product.translated.description|raw }}
+                    </div>
+                {% endif %}
+                
+                <div class="product-detail-price" aria-label="{{ "shr-quick-view-modal.price"|trans }}">
+                    {{ product.calculatedPrice.unitPrice|currency }}
+                    {% if product.calculatedPrice.listPrice %}
+                        <span class="list-price">{{ product.calculatedPrice.listPrice.price|currency }}</span>
+                    {% endif %}
+                </div>
+                
+                {% if product.options %}
+                    <div class="product-variants" role="group" aria-label="{{ "shr-quick-view-modal.variants"|trans }}">
+                        {% for option in product.options %}
+                            <div class="product-variant-option">
+                                <label id="variant-label-{{ option.id }}">{{ option.group.translated.name }}:</label>
+                                <span aria-labelledby="variant-label-{{ option.id }}">{{ option.translated.name }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                <div class="product-detail-quantity">
+                    <label for="shr-product-quantity">{{ "detail.labelQuantity"|trans }}</label>
+                    <select id="shr-product-quantity" class="custom-select quantity-select" aria-label="{{ "shr-quick-view-modal.selectQuantity"|trans }}">
+                        {% for quantity in range(1, 10) %}
+                            <option value="{{ quantity }}">{{ quantity }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="product-detail-buy">
+                    <button class="btn btn-primary btn-buy" 
+                            data-product-id="{{ product.id }}"
+                            aria-label="{{ "shr-quick-view-modal.addToCart"|trans({'%product%': product.translated.name}) }}">
+                        {{ "detail.addProduct"|trans|sw_sanitize }}
+                    </button>
+                </div>
+                
+                {% if product.properties %}
+                    <div class="product-detail-properties" role="region" aria-label="{{ "shr-quick-view-modal.properties"|trans }}">
+                        <h3>{{ "detail.propertyTitle"|trans|sw_sanitize }}</h3>
+                        <ul class="product-detail-properties-list">
+                            {% for property in product.properties %}
+                                <li class="product-detail-properties-item">
+                                    <strong>{{ property.group.translated.name }}:</strong> {{ property.translated.name }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                
+                {% if config('ShrQuickViewModal.config.enableRecentlyViewed') %}
+                    {% set recentlyViewed = app.session.get('shr_recently_viewed', []) %}
+                    {% if recentlyViewed|length > 0 %}
+                        <div class="recently-viewed" role="region" aria-label="{{ "shr-quick-view-modal.recentlyViewed"|trans }}">
+                            <h3>{{ "shr-quick-view-modal.recentlyViewedTitle"|trans }}</h3>
+                            <div class="product-slider">
+                                {% for viewedId in recentlyViewed %}
+                                    {% if viewedId != product.id %}
+                                        {% set viewedProduct = get_product(viewedId) %}
+                                        {% if viewedProduct %}
+                                            <div class="product-item">
+                                                <a href="{{ seoUrl('frontend.detail.page', {'productId': viewedId}) }}"
+                                                   aria-label="{{ "shr-quick-view-modal.viewProduct"|trans({'%product%': viewedProduct.translated.name}) }}">
+                                                    {% if viewedProduct.cover %}
+                                                        {% sw_thumbnails 'product-image-thumbnails' with {
+                                                            media: viewedProduct.cover,
+                                                            sizes: {
+                                                                'default': '120px'
+                                                            }
+                                                        } %}
+                                                    {% endif %}
+                                                    <div class="product-name">{{ viewedProduct.translated.name }}</div>
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                
+                <div class="product-detail-footer">
+                    <a href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}" 
+                       class="btn btn-link"
+                       aria-label="{{ "shr-quick-view-modal.viewFullDetailsLabel"|trans({'%product%': product.translated.name}) }}">
+                        {{ "shr-quick-view-modal.viewFullDetails"|trans|sw_sanitize }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

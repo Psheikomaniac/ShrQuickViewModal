@@ -1,0 +1,20 @@
+{% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
+
+{% block component_product_box_action_inner %}
+    {{ parent() }}
+    
+    {# Add quick view button #}
+    <div class="shr-quick-view-container">
+        <button class="shr-quick-view-button{% if page.extensions.shr_quick_view_config.showOnHoverOnly %} d-none{% endif %}"
+                data-product-id="{{ product.id }}"
+                title="{{ "shr-quick-view-modal.quickViewButtonTitle"|trans|striptags }}">
+            {% if page.extensions.shr_quick_view_config.buttonIcon == 'eye' %}
+                <span class="icon icon-eye"></span>
+            {% elseif page.extensions.shr_quick_view_config.buttonIcon == 'search' %}
+                <span class="icon icon-search"></span>
+            {% elseif page.extensions.shr_quick_view_config.buttonIcon == 'lightning' %}
+                <span class="icon icon-lightning"></span>
+            {% endif %}
+        </button>
+    </div>
+{% endblock %}

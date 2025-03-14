@@ -1,0 +1,37 @@
+{
+    "name": "shr/quick-view-modal",
+    "description": "Allows customers to view product details directly from category pages in a modal window",
+    "version": "1.0.0",
+    "type": "shopware-platform-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SHR"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.3.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "ShrQuickViewModal\\ShrQuickViewModal",
+        "label": {
+            "de-DE": "SHR Schnellansicht Modal",
+            "en-GB": "SHR Quick View Modal",
+            "es-ES": "SHR Modal de Vista Rápida",
+            "pt-PT": "SHR Modal de Visualização Rápida",
+            "zh-CN": "SHR 快速查看模态框"
+        },
+        "description": {
+            "de-DE": "Ermöglicht Kunden Produktdetails direkt von Kategorieseiten in einem Modal-Fenster anzuzeigen",
+            "en-GB": "Allows customers to view product details directly from category pages in a modal window",
+            "es-ES": "Permite a los clientes ver detalles de productos directamente desde páginas de categorías en una ventana modal",
+            "pt-PT": "Permite aos clientes ver detalhes de produtos diretamente das páginas de categorias em uma janela modal",
+            "zh-CN": "允许客户直接从类别页面在模态窗口中查看产品详细信息"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "ShrQuickViewModal\\": "src/"
+        }
+    }
+}
